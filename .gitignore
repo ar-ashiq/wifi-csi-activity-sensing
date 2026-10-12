@@ -1,3 +1,16 @@
+!raw/
+raw/*
+!raw/README.md
+
+!intermediate_csv/
+intermediate_csv/*
+!intermediate_csv/README.md
+
+!configs/
+configs/*
+!configs/README.md
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
