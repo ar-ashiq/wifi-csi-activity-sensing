@@ -1,2 +1,2 @@
-# wifi-csi-activity-sensing
+### wifi-csi-activity-sensing
 Environment aware activity predictor using wifi CSI info
