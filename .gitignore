@@ -6,6 +6,8 @@ raw/*
 intermediate_csv/*
 !intermediate_csv/README.md
 
+!windows/*
+
 !configs/
 configs/*
 !configs/README.md
