@@ -26,8 +26,6 @@ Explores a **self-supervised representation learning approach using SimCLR (Simp
 
 Instead of directly training a neural network to classify CSI signals into different rooms, SimCLR learns to identify similarities between different augmented views of the same CSI signal.
 
-#### Run Task 2
-
 Execute the following command from the project root:
 
 ```bash
@@ -39,6 +37,6 @@ This executes the SimCLR representation learning pipeline and the associated bas
 ### Task3
 ```bash
 python src/task3_few_shot_adaptation.py
-python src/evaluate_routing_contribution.py 
+python src/evaluate_routing_contribution.py
 python src/generate_report_figures.py
 ```
