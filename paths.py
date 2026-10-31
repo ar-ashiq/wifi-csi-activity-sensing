@@ -20,5 +20,5 @@ CHECKPOINTS_DIR = PROJECT_ROOT.joinpath("checkpoints")
 
 ROOM_A_CSV_DIR = PROJECT_ROOT.joinpath("intermediate_csv", "room_A")
 ROOM_B_CSV_DIR = PROJECT_ROOT.joinpath("intermediate_csv", "room_B")
-EXPERIMENT2_DATA_DIR = PROJECT_ROOT.joinpath("raw", "experiment_2", "csidata")
-EXPERIMENT3_DATA_DIR = PROJECT_ROOT.joinpath("raw", "experiment_3")
+EXPERIMENT2_DATA_DIR = PROJECT_ROOT.joinpath("raw", "Experiment-2", "realdata", "input_data", "30ms", "csidata" )
+EXPERIMENT3_DATA_DIR = PROJECT_ROOT.joinpath("raw", "Experiment-3", "Data")
