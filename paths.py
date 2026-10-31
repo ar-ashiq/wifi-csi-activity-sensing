@@ -22,3 +22,6 @@ ROOM_A_CSV_DIR = PROJECT_ROOT.joinpath("intermediate_csv", "room_A")
 ROOM_B_CSV_DIR = PROJECT_ROOT.joinpath("intermediate_csv", "room_B")
 EXPERIMENT2_DATA_DIR = PROJECT_ROOT.joinpath("raw", "Experiment-2", "realdata", "input_data", "30ms", "csidata" )
 EXPERIMENT3_DATA_DIR = PROJECT_ROOT.joinpath("raw", "Experiment-3", "Data")
+
+# files
+TASK1_ABLATION_CSV = CHECKPOINTS_DIR.joinpath("task1_window_ablation.csv")

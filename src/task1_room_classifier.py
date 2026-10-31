@@ -2,18 +2,18 @@ import os
 import json
 import sys
 from pathlib import Path
-# import numpy as np
-# import pandas as pd
-# import torch
-# import torch.nn as nn
-# import torch.optim as optim
-# from torch.utils.data import Dataset, DataLoader
-# from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+import numpy as np
+import pandas as pd
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import Dataset, DataLoader
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(str(PROJECT_DIR))
 
-from paths import CHECKPOINTS_DIR, PROJECT_ROOT, WINDOWS_DIR
+from paths import CHECKPOINTS_DIR, PROJECT_ROOT, TASK1_ABLATION_CSV, WINDOWS_DIR
 
 print(f"Check points: {CHECKPOINTS_DIR}")
 # ---------------------------------------------------------
@@ -134,7 +134,7 @@ def evaluate(model, loader, device):
 # 4. Main Execution Pipeline
 # ---------------------------------------------------------
 def run_task1():
-    manifest_path = WINDOWS_DIR / "windows_manifest.csv"
+    manifest_path = WINDOWS_DIR.joinpath("windows_manifest.csv")
     checkpoints_dir = CHECKPOINTS_DIR
     checkpoints_dir.mkdir(parents=True, exist_ok=True)
 
@@ -206,7 +206,7 @@ def run_task1():
 
     # Export results for plotting the required curve in the technical report
     ablation_df = pd.DataFrame(ablation_results)
-    ablation_csv = base_dir / "checkpoints" / "task1_window_ablation.csv"
+    ablation_csv = TASK1_ABLATION_CSV
     ablation_df.to_csv(ablation_csv, index=False)
     print(f"\nAblation metrics saved for report figure: {ablation_csv.resolve()}")
 

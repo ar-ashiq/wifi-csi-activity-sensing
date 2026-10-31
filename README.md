@@ -12,10 +12,16 @@ python src/parser_experiment2.py
 ```
 This saves the parsed data to intermediate_csv/room_A/room_a_manifest.csv
 
+#### Generate validation datasets for experiment 3 (25 per class)
+```bash
+python src/process_experiment3.py 
+```
+
 #### Build windows
 ```bash
 python src/build_windows.py     
 ```
 This saves a master manifest to windows/windows_manifest.csv
 
-#### 
+### Task 1
+To predict the room
