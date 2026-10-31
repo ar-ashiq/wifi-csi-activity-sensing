@@ -4,9 +4,11 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from paths import CHECKPOINTS_DIR
+
 
 plt.style.use("seaborn-v0_8-whitegrid" if "seaborn-v0_8-whitegrid" in plt.style.available else "default")
-checkpoints_dir = Path("D:/Ub_Hack/hack_2/checkpoints")
+checkpoints_dir = CHECKPOINTS_DIR
 figures_dir = checkpoints_dir / "figures"
 figures_dir.mkdir(parents=True, exist_ok=True)
 

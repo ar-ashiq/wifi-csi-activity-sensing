@@ -3,6 +3,7 @@ import glob
 from pathlib import Path
 import numpy as np
 import pandas as pd
+from paths import EXPERIMENT3_DATA_DIR, ROOM_B_CSV_DIR
 
 def process_room_b(
     exp3_data_dir: str,
@@ -93,13 +94,9 @@ def process_room_b(
     print(f"Manifest successfully generated: {manifest_path.resolve()}")
 
 if __name__ == "__main__":
-    # Check your Experiment-3 Data path
-    # If it is located at D:\Ub_Hack\Experiment-3\Data, update below accordingly:
     possible_paths = [
-        Path(r"D:/Ub_Hack/Experiment-3/Data"),
-        Path(r"D:/Ub_Hack/Experiment-3"),
-        Path(r"D:/Ub_Hack/hack_2/Experiment-3/Data"),
-        Path(r"D:/Ub_Hack/hack_2/Experiment-3")
+        EXPERIMENT3_DATA_DIR / "Data",
+        EXPERIMENT3_DATA_DIR,
     ]
     
     EXP3_DATA_PATH = None
@@ -109,9 +106,8 @@ if __name__ == "__main__":
             break
 
     if EXP3_DATA_PATH is None:
-        # Update with the exact path if different
-        EXP3_DATA_PATH = Path(r"D:/Ub_Hack/Experiment-3/Data")
+        EXP3_DATA_PATH = EXPERIMENT3_DATA_DIR / "Data"
 
-    OUTPUT_PATH = Path(r"D:/Ub_Hack/hack_2/intermediate_csv/room_B")
+    OUTPUT_PATH = ROOM_B_CSV_DIR
 
     process_room_b(str(EXP3_DATA_PATH), str(OUTPUT_PATH), seed=42)

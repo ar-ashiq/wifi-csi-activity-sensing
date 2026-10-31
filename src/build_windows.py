@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import numpy as np
 import pandas as pd
+from paths import INTERMEDIATE_CSV_DIR, WINDOWS_DIR
 
 # Unified canonical label mapping
 LABEL_MAPPING = {
@@ -87,8 +88,8 @@ def generate_windows_for_room(
                 "original_activity": raw_activity,
                 "original_rows": len(df),
                 "window_shape": str(window.shape),
-                "file_path": str(save_path.resolve()),
-                "source_csv": str(csv_path.resolve())
+                "file_path": save_path.relative_to(Path(__file__).resolve().parent.parent).as_posix(),
+                "source_csv": csv_path.relative_to(Path(__file__).resolve().parent.parent).as_posix()
             })
 
         except Exception as e:
@@ -97,10 +98,9 @@ def generate_windows_for_room(
     return records
 
 def build_benchmark_windows():
-    base_dir = Path(r"D:/Ub_Hack/hack_2")
-    room_a_dir = base_dir / "intermediate_csv" / "room_A"
-    room_b_dir = base_dir / "intermediate_csv" / "room_B"
-    output_windows_dir = base_dir / "windows"
+    room_a_dir = INTERMEDIATE_CSV_DIR / "room_A"
+    room_b_dir = INTERMEDIATE_CSV_DIR / "room_B"
+    output_windows_dir = WINDOWS_DIR
     output_windows_dir.mkdir(parents=True, exist_ok=True)
 
     all_records = []

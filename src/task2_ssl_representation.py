@@ -12,6 +12,7 @@ from sklearn.metrics import f1_score, balanced_accuracy_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 from sklearn.manifold import TSNE
+from paths import CHECKPOINTS_DIR, PROJECT_ROOT, WINDOWS_DIR
 
 # Enforce deterministic behavior and enable cuDNN benchmark on GPU
 torch.backends.cudnn.benchmark = True
@@ -77,7 +78,10 @@ class LabeledCSIDataset(Dataset):
 
     def __getitem__(self, idx):
         row = self.records.iloc[idx]
-        data = np.load(row["file_path"]).astype(np.float32)  # (150, 256)
+        file_path = Path(row["file_path"])
+        if not file_path.is_absolute():
+            file_path = PROJECT_ROOT / file_path
+        data = np.load(file_path).astype(np.float32)  # (150, 256)
         tensor_x = torch.from_numpy(data.T)                  # (256, 150)
         label = torch.tensor(self.label_to_idx[row["activity"]], dtype=torch.long)
         return tensor_x, label, row["room"], row["activity"]
@@ -207,9 +211,8 @@ def extract_embeddings(model, dataloader, device):
 # 5. Main Execution Pipeline
 # ---------------------------------------------------------
 def run_task2():
-    base_dir = Path("D:/Ub_Hack/hack_2")
-    manifest_path = base_dir / "windows/windows_manifest.csv"
-    checkpoints_dir = base_dir / "checkpoints"
+    manifest_path = WINDOWS_DIR / "windows_manifest.csv"
+    checkpoints_dir = CHECKPOINTS_DIR
     checkpoints_dir.mkdir(parents=True, exist_ok=True)
 
     # Explicit GPU configuration

@@ -8,6 +8,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+from paths import CHECKPOINTS_DIR, PROJECT_ROOT, WINDOWS_DIR
 
 # ---------------------------------------------------------
 # 1. Dataset Loader from Manifest
@@ -25,7 +26,10 @@ class CSIRoomDataset(Dataset):
     def __getitem__(self, idx):
         row = self.records.iloc[idx]
         file_path = row["file_path"]
-        data = np.load(file_path).astype(np.float32)  # Expected shape: (150, 256)
+        path = Path(file_path)
+        if not path.is_absolute():
+            path = PROJECT_ROOT / path
+        data = np.load(path).astype(np.float32)  # Expected shape: (150, 256)
 
         # Slice window if evaluating window length ablation (T <= 150)
         if self.window_len < 150:
@@ -124,9 +128,8 @@ def evaluate(model, loader, device):
 # 4. Main Execution Pipeline
 # ---------------------------------------------------------
 def run_task1():
-    base_dir = Path(r"D:/Ub_Hack/hack_2")
-    manifest_path = base_dir / "windows" / "windows_manifest.csv"
-    checkpoints_dir = base_dir / "checkpoints"
+    manifest_path = WINDOWS_DIR / "windows_manifest.csv"
+    checkpoints_dir = CHECKPOINTS_DIR
     checkpoints_dir.mkdir(parents=True, exist_ok=True)
 
     df_manifest = pd.read_csv(manifest_path)

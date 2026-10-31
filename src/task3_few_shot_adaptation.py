@@ -8,6 +8,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 from sklearn.metrics import f1_score, balanced_accuracy_score, confusion_matrix, classification_report
+from paths import CHECKPOINTS_DIR, PROJECT_ROOT, WINDOWS_DIR
 
 # Enforce deterministic GPU performance
 torch.backends.cudnn.benchmark = True
@@ -24,7 +25,10 @@ class CSIWindowDataset(Dataset):
 
     def __getitem__(self, idx):
         row = self.records.iloc[idx]
-        data = np.load(row["file_path"]).astype(np.float32)  # (150, 256)
+        file_path = Path(row["file_path"])
+        if not file_path.is_absolute():
+            file_path = PROJECT_ROOT / file_path
+        data = np.load(file_path).astype(np.float32)  # (150, 256)
         tensor_x = torch.from_numpy(data.T)                  # (256, 150)
         return tensor_x, row["activity"], row["room"], row["window_id"]
 
@@ -184,9 +188,8 @@ def run_adaptation_direction(
 # 3. Main Execution
 # ---------------------------------------------------------
 def run_task3():
-    base_dir = Path("D:/Ub_Hack/hack_2")
-    manifest_path = base_dir / "windows/windows_manifest.csv"
-    checkpoints_dir = base_dir / "checkpoints"
+    manifest_path = WINDOWS_DIR / "windows_manifest.csv"
+    checkpoints_dir = CHECKPOINTS_DIR
     checkpoints_dir.mkdir(parents=True, exist_ok=True)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

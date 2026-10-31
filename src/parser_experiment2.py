@@ -3,6 +3,7 @@ import struct
 from pathlib import Path
 import numpy as np
 import pandas as pd
+from paths import EXPERIMENT2_DATA_DIR, ROOM_A_CSV_DIR
 
 def unpack_bcm4366c0_word(val: int):
     """
@@ -160,7 +161,7 @@ def process_experiment2_folders(input_csidata_dir: str, output_base_dir: str):
     print(f"Manifest saved to: {manifest_csv.resolve()}")
 
 if __name__ == "__main__":
-    INPUT_PATH = r"D:/Ub_Hack/Experiment-2/csidata"
-    OUTPUT_PATH = r"D:/Ub_Hack/hack_2/intermediate_csv/room_A"
+    INPUT_PATH = EXPERIMENT2_DATA_DIR
+    OUTPUT_PATH = ROOM_A_CSV_DIR
 
     process_experiment2_folders(INPUT_PATH, OUTPUT_PATH)

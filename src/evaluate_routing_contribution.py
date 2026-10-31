@@ -4,11 +4,11 @@ from pathlib import Path
 from sklearn.metrics import f1_score, balanced_accuracy_score
 import subprocess
 import json
+from paths import CHECKPOINTS_DIR, WINDOWS_DIR, BASE_DIR
 
 def run_routing_ablation():
-    base_dir = Path("D:/Ub_Hack/hack_2")
-    manifest_path = base_dir / "windows/windows_manifest.csv"
-    checkpoints_dir = base_dir / "checkpoints"
+    manifest_path = WINDOWS_DIR / "windows_manifest.csv"
+    checkpoints_dir = CHECKPOINTS_DIR
     
     df_val = pd.read_csv(manifest_path)
     df_val = df_val[df_val["split"] == "validation"].copy()
@@ -20,7 +20,7 @@ def run_routing_ablation():
     for mode in routing_modes:
         out_csv = checkpoints_dir / f"val_preds_{mode}.csv"
         cmd = [
-            "python", str(base_dir / "run_episode.py"),
+            "python", str(BASE_DIR / "run_episode.py"),
             "--output_file", str(out_csv),
             "--routing", mode
         ]

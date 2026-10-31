@@ -6,6 +6,7 @@ import pandas as pd
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from paths import CHECKPOINTS_DIR, PROJECT_ROOT, WINDOWS_DIR
 
 # Enforce cuDNN GPU acceleration
 torch.backends.cudnn.benchmark = True
@@ -178,9 +179,7 @@ def main():
     parser.add_argument("--output_file", type=str, default="episode_predictions.csv", help="Destination CSV path")
     parser.add_argument("--routing", type=str, choices=["predicted", "oracle", "none"], default="predicted")
     args = parser.parse_args()
-
-    base_dir = Path("D:/Ub_Hack/hack_2")
-    checkpoints_dir = base_dir / "checkpoints"
+        checkpoints_dir = CHECKPOINTS_DIR
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Executing Episode Inference on: {device}")
 
@@ -189,11 +188,12 @@ def main():
     # If no custom directory passed, run against local validation set to verify
     if not args.input_dir:
         print("No input_dir provided; running reproducibility test on local validation pool...")
-        manifest_path = base_dir / "windows/windows_manifest.csv"
+        manifest_path = WINDOWS_DIR / "windows_manifest.csv"
         df_val = pd.read_csv(manifest_path)
         df_val = df_val[df_val["split"] == "validation"].sample(frac=1.0, random_state=42).reset_index(drop=True)
         
-        windows = np.stack([np.load(p) for p in df_val["file_path"]], axis=0)
+        paths = [PROJECT_ROOT / p if not Path(p).is_absolute() else Path(p) for p in df_val["file_path"]]
+        windows = np.stack([np.load(p) for p in paths], axis=0)
         window_ids = df_val["window_id"].tolist()
         oracle_rooms = df_val["room"].tolist()
     else:
