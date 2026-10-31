@@ -1,0 +1,204 @@
+{
+  "target_Room_B": {
+    "labels": [
+      "SIT",
+      "STAND",
+      "WALK",
+      "EMPTY",
+      "LYING"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        0,
+        16,
+        9
+      ],
+      [
+        0,
+        0,
+        0,
+        13,
+        12
+      ],
+      [
+        0,
+        0,
+        0,
+        8,
+        17
+      ],
+      [
+        0,
+        0,
+        0,
+        20,
+        5
+      ],
+      [
+        0,
+        0,
+        0,
+        9,
+        16
+      ]
+    ],
+    "report": {
+      "SIT": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 25.0
+      },
+      "STAND": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 25.0
+      },
+      "WALK": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 25.0
+      },
+      "EMPTY": {
+        "precision": 0.30303030303030304,
+        "recall": 0.8,
+        "f1-score": 0.43956043956043955,
+        "support": 25.0
+      },
+      "LYING": {
+        "precision": 0.2711864406779661,
+        "recall": 0.64,
+        "f1-score": 0.38095238095238093,
+        "support": 25.0
+      },
+      "accuracy": 0.288,
+      "macro avg": {
+        "precision": 0.11484334874165383,
+        "recall": 0.288,
+        "f1-score": 0.1641025641025641,
+        "support": 125.0
+      },
+      "weighted avg": {
+        "precision": 0.11484334874165383,
+        "recall": 0.288,
+        "f1-score": 0.16410256410256407,
+        "support": 125.0
+      }
+    }
+  },
+  "target_Room_A": {
+    "labels": [
+      "SIT",
+      "STAND",
+      "WALK",
+      "FALL",
+      "SIT_DOWN",
+      "STAND_UP"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        2,
+        10,
+        1,
+        12
+      ],
+      [
+        0,
+        0,
+        1,
+        18,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        6,
+        13,
+        4,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        19,
+        3,
+        3
+      ],
+      [
+        0,
+        0,
+        1,
+        16,
+        3,
+        5
+      ],
+      [
+        0,
+        0,
+        0,
+        9,
+        2,
+        14
+      ]
+    ],
+    "report": {
+      "SIT": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 25.0
+      },
+      "STAND": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 25.0
+      },
+      "WALK": {
+        "precision": 0.6,
+        "recall": 0.24,
+        "f1-score": 0.34285714285714286,
+        "support": 25.0
+      },
+      "FALL": {
+        "precision": 0.2235294117647059,
+        "recall": 0.76,
+        "f1-score": 0.34545454545454546,
+        "support": 25.0
+      },
+      "SIT_DOWN": {
+        "precision": 0.23076923076923078,
+        "recall": 0.12,
+        "f1-score": 0.15789473684210525,
+        "support": 25.0
+      },
+      "STAND_UP": {
+        "precision": 0.3333333333333333,
+        "recall": 0.56,
+        "f1-score": 0.417910447761194,
+        "support": 25.0
+      },
+      "accuracy": 0.28,
+      "macro avg": {
+        "precision": 0.23127199597787831,
+        "recall": 0.28,
+        "f1-score": 0.21068614548583123,
+        "support": 150.0
+      },
+      "weighted avg": {
+        "precision": 0.23127199597787837,
+        "recall": 0.28,
+        "f1-score": 0.21068614548583128,
+        "support": 150.0
+      }
+    }
+  }
+}
