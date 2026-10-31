@@ -1,54 +1,40 @@
-### wifi-csi-activity-sensing
+## wifi-csi-activity-sensing
 Environment aware activity predictor using wifi CSI info
 
-
+#### Setup the virtual environmnent
 ```bash
 python3 -m venv .venv
 ```
 
-#### Run Experiment2 data parser
-```bash
-python src/parser_experiment2.py
-```
-This saves the parsed data to intermediate_csv/room_A/room_a_manifest.csv
+#### Preprocess and generate windows
+1. Saves the parsed data to intermediate_csv/room_A/room_a_manifest.csv
+2. Generates the training and validation data
+3. Saves a master manifest to windows/windows_manifest.csv
 
-#### Generate validation datasets for experiment 3 (25 per class)
 ```bash
-python src/process_experiment3.py 
+python src/run_preprocessing_and_windowing.py
 ```
 
-#### Build windows
-```bash
-python src/build_windows.py     
-```
-This saves a master manifest to windows/windows_manifest.csv
-
-### Task 1
-To predict the room
+### Task 1: Train the room classifier
 ```bash
 python src/room_classifier.py
 ```
 
-### Task 2
-self-supervised contrastive learning approach called SimCLR. Instead of teaching a neural network what room or activity a CSI signal represents using labels, we first teach it to recognise which CSI signals are similar to each other by creating different augmented versions of the same signal.
+### Task 2: Self-Supervised Contrastive Learning (SimCLR)
 
-Suppose you collect a CSI window of shape:
-\[
-X \in \mathbb{R}^{150 \times 256}
-\]
+Explores a **self-supervised representation learning approach using SimCLR (Simple Framework for Contrastive Learning of Visual Representations)** to learn meaningful representations from Channel State Information (CSI) signals without requiring room labels during the representation learning stage.
 
-This represents:
-- 150 time samples.
-- 256 Wi-Fi subcarriers.
+Instead of directly training a neural network to classify CSI signals into different rooms, SimCLR learns to identify similarities between different augmented views of the same CSI signal.
 
-Baseline models
-1. handcrafted features model
+#### Run Task 2
+
+Execute the following command from the project root:
 
 ```bash
-python temp/task2new.py
 python src/task2_ssl_representation.py
 ```
 
+This executes the SimCLR representation learning pipeline and the associated baseline evaluation as implemented in the script.
 
 ### Task3
 ```bash
