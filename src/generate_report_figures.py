@@ -10,54 +10,13 @@ PROJECT_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(str(PROJECT_DIR))
 
   
-from paths import CHECKPOINTS_DIR
+from paths import CHECKPOINTS_DIR, TASK1_ABLATION_CSV
 
 
 plt.style.use("seaborn-v0_8-whitegrid" if "seaborn-v0_8-whitegrid" in plt.style.available else "default")
 checkpoints_dir = CHECKPOINTS_DIR
 figures_dir = checkpoints_dir / "figures"
 figures_dir.mkdir(parents=True, exist_ok=True)
-
-# ---------------------------------------------------------
-# Figure 1: Environment Fingerprint vs Window Length
-# ---------------------------------------------------------
-ablation_file = checkpoints_dir / "task1_window_ablation.csv"
-if ablation_file.exists():
-    df_ab = pd.read_csv(ablation_file)
-    plt.figure(figsize=(7, 4.5), dpi=300)
-    plt.plot(df_ab["window_length"], df_ab["validation_accuracy"], marker='o', linewidth=2, color='#1f77b4')
-    plt.title("Environment Fingerprint: Room Accuracy vs Window Length", fontsize=12, fontweight='bold')
-    plt.xlabel("Observation Window Length ($T$)", fontsize=11)
-    plt.ylabel("Validation Accuracy (%)", fontsize=11)
-    plt.ylim(min(df_ab["validation_accuracy"]) - 5, 102)
-    plt.grid(True, linestyle="--", alpha=0.6)
-    plt.tight_layout()
-    plt.savefig(figures_dir / "fig1_environment_fingerprint.png")
-    plt.close()
-    print("Generated: fig1_environment_fingerprint.png")
-
-# ---------------------------------------------------------
-# Figure 2: Encoder Diagnosis t-SNE (Dual Plot)
-# ---------------------------------------------------------
-tsne_file = checkpoints_dir / "task2_tsne_coordinates.csv"
-if tsne_file.exists():
-    df_tsne = pd.read_csv(tsne_file)
-    fig, axes = plt.subplots(1, 2, figsize=(14, 5.5), dpi=300)
-    
-    sns.scatterplot(ax=axes[0], data=df_tsne, x="tsne_dim1", y="tsne_dim2", hue="room", palette="tab10", alpha=0.8, s=35)
-    axes[0].set_title("t-SNE Latent Space Colored by Room", fontweight='bold')
-    axes[0].set_xlabel("Dim 1")
-    axes[0].set_ylabel("Dim 2")
-    
-    sns.scatterplot(ax=axes[1], data=df_tsne, x="tsne_dim1", y="tsne_dim2", hue="activity", palette="turbo", alpha=0.8, s=35)
-    axes[1].set_title("t-SNE Latent Space Colored by Activity", fontweight='bold')
-    axes[1].set_xlabel("Dim 1")
-    axes[1].set_ylabel("Dim 2")
-    
-    plt.tight_layout()
-    plt.savefig(figures_dir / "fig2_tsne_diagnosis.png")
-    plt.close()
-    print("Generated: fig2_tsne_diagnosis.png")
 
 # ---------------------------------------------------------
 # Figure 3: Label-Efficiency Curve (Macro-F1 vs K)

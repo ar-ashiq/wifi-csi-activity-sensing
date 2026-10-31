@@ -45,7 +45,6 @@ Baseline models
 1. handcrafted features model
 
 ```bash
-python temp/task2new.py
 python src/task2_ssl_representation.py
 ```
 
