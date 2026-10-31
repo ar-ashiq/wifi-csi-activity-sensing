@@ -11,6 +11,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 
 from torch.utils.data import Dataset, DataLoader
+import seaborn as sns
 
 from sklearn.metrics import (
     f1_score,
@@ -705,67 +706,46 @@ def plot_tsne(
     return tsne_2d
 
 
-def plot_confusion_matrix(
-    y_true,
-    y_pred,
-    class_names,
-    plots_dir
-):
-
+def plot_confusion_matrix(y_true, y_pred, class_names, output_dir):
     cm = confusion_matrix(
         y_true,
         y_pred,
-        labels=list(range(len(class_names)))
+        labels=np.arange(len(class_names))
     )
 
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(7, 6), dpi=300)
 
-    plt.imshow(
+    sns.heatmap(
         cm,
-        interpolation="nearest"
+        annot=True,
+        fmt="d",
+        cmap="Blues",
+        xticklabels=class_names,
+        yticklabels=class_names,
+        linewidths=0.5,
+        linecolor="white",
+        cbar=True,
+        annot_kws={"size": 11}
     )
 
-    plt.title("SSL Encoder - Validation Confusion Matrix")
-
-    plt.colorbar()
-
-    plt.xticks(
-        range(len(class_names)),
-        class_names,
-        rotation=45,
-        ha="right"
+    plt.title(
+        "Confusion Matrix - Contrastive Learning",
+        fontsize=13,
+        fontweight="bold"
     )
+    plt.xlabel("Predicted Label", fontsize=11)
+    plt.ylabel("True Label", fontsize=11)
 
-    plt.yticks(
-        range(len(class_names)),
-        class_names
-    )
-
-    plt.xlabel("Predicted Activity")
-
-    plt.ylabel("Actual Activity")
-
-    for i in range(cm.shape[0]):
-
-        for j in range(cm.shape[1]):
-
-            plt.text(
-                j,
-                i,
-                str(cm[i, j]),
-                ha="center",
-                va="center"
-            )
+    plt.xticks(rotation=45, ha="right")
+    plt.yticks(rotation=0)
 
     plt.tight_layout()
-
     plt.savefig(
-        plots_dir / "04_confusion_matrix.png",
-        dpi=300
+        output_dir / "04_confusion_matrix.png",
+        dpi=300,
+        bbox_inches="tight"
     )
-
     plt.close()
-
 
 def plot_per_class_performance(
     y_true,

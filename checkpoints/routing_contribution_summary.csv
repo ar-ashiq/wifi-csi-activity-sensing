@@ -1,4 +1,4 @@
 Routing Strategy,Validation Macro-F1,Balanced Accuracy (%)
-Predicted,0.4679,46.25
-Oracle,0.4679,46.25
-No Routing (Agnostic),0.3871,43.0
+Predicted,0.4303,43.75
+Oracle,0.4303,43.75
+No Routing (Agnostic),0.3674,40.5

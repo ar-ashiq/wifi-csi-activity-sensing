@@ -1,9 +1,9 @@
 direction,target_room,K,overall_macro_f1,exclusive_macro_f1,shared_macro_f1,balanced_accuracy
-Room_A->Room_B,Room_B,1,0.16,0.6989,0.0,28.0
-Room_A->Room_B,Room_B,5,0.1641,0.7182,0.0,28.8
-Room_A->Room_B,Room_B,10,0.1655,0.7196,0.0,28.8
-Room_A->Room_B,Room_B,20,0.1792,0.7799,0.0,31.2
-Room_B->Room_A,Room_A,1,0.1611,0.2304,0.0588,20.0
-Room_B->Room_A,Room_A,5,0.2107,0.3321,0.0588,28.0
-Room_B->Room_A,Room_A,10,0.2728,0.4586,0.0588,34.67
-Room_B->Room_A,Room_A,20,0.2474,0.4249,0.0505,31.33
+Room_A->Room_B,Room_B,1,0.1765,0.4294,0.0286,27.2
+Room_A->Room_B,Room_B,5,0.1392,0.6073,0.0,24.8
+Room_A->Room_B,Room_B,10,0.1848,0.7799,0.0,31.2
+Room_A->Room_B,Room_B,20,0.1696,0.7159,0.0,28.8
+Room_B->Room_A,Room_A,1,0.1872,0.2119,0.0378,24.0
+Room_B->Room_A,Room_A,5,0.1799,0.2954,0.0215,23.33
+Room_B->Room_A,Room_A,10,0.1482,0.2813,0.0222,19.33
+Room_B->Room_A,Room_A,20,0.1872,0.3122,0.0119,25.33

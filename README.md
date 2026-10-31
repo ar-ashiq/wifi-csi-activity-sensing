@@ -50,4 +50,6 @@ python src/task2_ssl_representation.py
 ### Task3
 ```bash
 python src/task3_few_shot_adaptation.py
+python src/evaluate_routing_contribution.py 
+python src/generate_report_figures.py
 ```
