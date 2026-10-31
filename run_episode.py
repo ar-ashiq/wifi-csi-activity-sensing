@@ -179,7 +179,7 @@ def main():
     parser.add_argument("--output_file", type=str, default="episode_predictions.csv", help="Destination CSV path")
     parser.add_argument("--routing", type=str, choices=["predicted", "oracle", "none"], default="predicted")
     args = parser.parse_args()
-        checkpoints_dir = CHECKPOINTS_DIR
+    checkpoints_dir = CHECKPOINTS_DIR
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Executing Episode Inference on: {device}")
 
