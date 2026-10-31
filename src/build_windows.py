@@ -81,6 +81,7 @@ def generate_windows_for_room(
 
             # File naming: window_<room>_<split>_<id>.npy
             window_id = f"win_{room_name}_{split}_{idx:04d}"
+            capture_id = f"capture_{room_name}_{split}_{idx:04d}"
             save_folder = output_dir / split / room_name
             save_folder.mkdir(parents=True, exist_ok=True)
             save_path = save_folder / f"{window_id}.npy"
@@ -89,6 +90,7 @@ def generate_windows_for_room(
 
             records.append({
                 "window_id": window_id,
+                "capture_id": capture_id,  # NEW
                 "room": room_name,
                 "split": split,
                 "activity": canonical_label,
@@ -98,7 +100,6 @@ def generate_windows_for_room(
                 "file_path": save_path.relative_to(Path(__file__).resolve().parent.parent).as_posix(),
                 "source_csv": csv_path.relative_to(Path(__file__).resolve().parent.parent).as_posix()
             })
-
         except Exception as e:
             print(f"Error processing {csv_path.name}: {e}")
 
