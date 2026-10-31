@@ -1,4 +1,4 @@
 Model Representation,Validation Macro-F1,Balanced Accuracy (%)
-Handcrafted Features,0.3992,41.25
-Random Weights (Frozen),0.0989,19.75
-Pretrained SSL Encoder (Frozen),0.6495,65.75
+Handcrafted Features,0.3984,41.25
+Random Weights (Frozen),0.1427,24.25
+Pretrained SSL Encoder (Frozen),0.6555,67.5

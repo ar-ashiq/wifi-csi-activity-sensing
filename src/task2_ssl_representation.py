@@ -258,6 +258,7 @@ def run_task2():
     optimizer = optim.AdamW(ssl_model.parameters(), lr=1e-3, weight_decay=1e-4)
 
     epochs = 20
+    loss_history = []
     for epoch in range(1, epochs + 1):
         ssl_model.train()
         total_loss, steps = 0.0, 0
@@ -275,7 +276,13 @@ def run_task2():
             total_loss += loss.item()
             steps += 1
 
-        print(f"SSL Epoch [{epoch:02d}/{epochs:02d}] | InfoNCE Loss: {total_loss / steps:.4f}")
+        epoch_loss = total_loss / steps
+        loss_history.append(epoch_loss)
+
+        print(
+            f"SSL Epoch [{epoch:02d}/{epochs:02d}] "
+            f"| InfoNCE Loss: {epoch_loss:.4f}"
+)
 
     # Save frozen SSL encoder checkpoint (crucial for Task 3)
     ssl_checkpoint_path = checkpoints_dir / "ssl_encoder.pth"
