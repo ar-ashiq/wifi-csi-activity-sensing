@@ -1,5 +1,6 @@
 import os
 import json
+import sys
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -8,6 +9,10 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+
+PROJECT_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(str(PROJECT_DIR))
+
 from paths import CHECKPOINTS_DIR, PROJECT_ROOT, WINDOWS_DIR
 
 # ---------------------------------------------------------

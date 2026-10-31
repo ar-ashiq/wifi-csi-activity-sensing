@@ -1,9 +1,16 @@
+import sys
+
 import pandas as pd
 import numpy as np
 from pathlib import Path
 from sklearn.metrics import f1_score, balanced_accuracy_score
 import subprocess
 import json
+    
+PROJECT_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(str(PROJECT_DIR))
+
+  
 from paths import CHECKPOINTS_DIR, WINDOWS_DIR, BASE_DIR
 
 def run_routing_ablation():

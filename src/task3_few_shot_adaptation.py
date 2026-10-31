@@ -1,6 +1,7 @@
 import os
 import json
 from pathlib import Path
+import sys
 import numpy as np
 import pandas as pd
 import torch
@@ -8,6 +9,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 from sklearn.metrics import f1_score, balanced_accuracy_score, confusion_matrix, classification_report
+
+PROJECT_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(str(PROJECT_DIR))
+
+  
 from paths import CHECKPOINTS_DIR, PROJECT_ROOT, WINDOWS_DIR
 
 # Enforce deterministic GPU performance

@@ -1,8 +1,14 @@
 import os
 import glob
 from pathlib import Path
+import sys
 import numpy as np
 import pandas as pd
+
+PROJECT_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(str(PROJECT_DIR))
+
+  
 from paths import EXPERIMENT3_DATA_DIR, ROOM_B_CSV_DIR
 
 def process_room_b(

@@ -1,7 +1,14 @@
 import os
 from pathlib import Path
+import sys
 import numpy as np
 import pandas as pd
+
+
+PROJECT_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(str(PROJECT_DIR))
+    
+
 from paths import INTERMEDIATE_CSV_DIR, WINDOWS_DIR
 
 # Unified canonical label mapping

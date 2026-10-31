@@ -1,6 +1,7 @@
 import os
 import json
 from pathlib import Path
+import sys
 import numpy as np
 import pandas as pd
 import torch
@@ -12,6 +13,11 @@ from sklearn.metrics import f1_score, balanced_accuracy_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 from sklearn.manifold import TSNE
+
+PROJECT_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(str(PROJECT_DIR))
+
+  
 from paths import CHECKPOINTS_DIR, PROJECT_ROOT, WINDOWS_DIR
 
 # Enforce deterministic behavior and enable cuDNN benchmark on GPU

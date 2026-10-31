@@ -1,9 +1,15 @@
 import json
 from pathlib import Path
+import sys
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+PROJECT_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(str(PROJECT_DIR))
+
+  
 from paths import CHECKPOINTS_DIR
 
 
