@@ -12,6 +12,9 @@ windows/*
 configs/*
 !configs/README.md
 
+.DS_Store
+*.DS_Store
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
